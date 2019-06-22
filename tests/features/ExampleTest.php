@@ -1,7 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+
 
 class ExampleTest extends FeatureTestCase
 {
