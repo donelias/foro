@@ -38,4 +38,14 @@ class CreatePostsTest extends FeatureTestCase
         $this->see($title);
         //$this->seeInElement('h1', 'Esta es una pregunta');
     }
+
+
+    //Verificar restriccion de acceso y redireccion  al login
+    public function test_creating_a_post_requires_authentication()
+    {
+
+       // verificar si el usuario esta conectado
+        $this->visit(route('posts.create'))
+           ->seePageIs(route('login'));
+    }
 }
