@@ -13,16 +13,25 @@ class PostController extends Controller
         return view('posts.create');
     }
 
+    public function show(Post $post)
+    {
+        return view('posts.show', compact('post'));
+    }
 
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
         //$post = Post::create($request->all());
         $post = new  Post($request->all());
 
         //asignacion del usuario al post
         auth()->user()->posts()->save($post);
 
-        return $post->title;
+        return "Post: ".$post->title;
     }
 }

@@ -41,11 +41,22 @@ class CreatePostsTest extends FeatureTestCase
 
 
     //Verificar restriccion de acceso y redireccion  al login
-    public function test_creating_a_post_requires_authentication()
+    function test_creating_a_post_requires_authentication()
     {
 
        // verificar si el usuario esta conectado
         $this->visit(route('posts.create'))
            ->seePageIs(route('login'));
+    }
+
+
+    //validacion de formulario
+    function test_create_post_form_validation()
+    {
+        $this->actingAs($this->defaultUser())
+            ->visit(route('posts.create'))
+            ->press('Publicar')
+            ->seePageIs(route('posts.create'));
+
     }
 }
